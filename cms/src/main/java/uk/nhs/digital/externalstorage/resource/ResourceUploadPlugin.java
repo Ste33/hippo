@@ -9,6 +9,7 @@ import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
 import org.hippoecm.frontend.plugins.jquery.upload.FileUploadViolationException;
 import org.hippoecm.frontend.plugins.jquery.upload.single.FileUploadPanel;
+import org.hippoecm.frontend.plugins.yui.upload.processor.FileUploadPreProcessorService;
 import org.hippoecm.frontend.plugins.yui.upload.validation.DefaultUploadValidationService;
 import org.hippoecm.frontend.plugins.yui.upload.validation.FileUploadValidationService;
 import org.hippoecm.frontend.service.IEditor;
@@ -39,12 +40,17 @@ public class ResourceUploadPlugin extends RenderPlugin {
     public ResourceUploadPlugin(IPluginContext context, IPluginConfig config) {
         super(context, config);
         mode = IEditor.Mode.fromString(config.getString("mode"), IEditor.Mode.EDIT);
-        add(createFileUploadPanel());
+        add(createFileUploadPanel(config, context));
         add(new EventStoppingBehavior("onclick"));
     }
 
-    private FileUploadPanel createFileUploadPanel() {
-        final FileUploadPanel panel = new FileUploadPanel("fileUpload", getPluginConfig(), getValidationService()) {
+    private FileUploadPanel createFileUploadPanel(IPluginConfig pluginConfig, IPluginContext pluginContext) {
+
+        String serviceId = pluginConfig.getString(FileUploadPreProcessorService.PRE_PROCESSOR_ID, FileUploadPreProcessorService.DEFAULT_ID);
+        FileUploadPreProcessorService preProcessorService = pluginContext.getService(serviceId,
+            FileUploadPreProcessorService.class);
+
+        final FileUploadPanel panel = new FileUploadPanel("fileUpload", getPluginConfig(), getValidationService(), preProcessorService) {
             @Override
             public void onFileUpload(final FileUpload fileUpload) throws FileUploadViolationException {
                 handleUpload(fileUpload);

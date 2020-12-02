@@ -65,7 +65,7 @@ public class SearchComponent extends CommonComponent {
     private static final String GEOGRAPHIC_COVERAGE = "geographicCoverage";
     private static final String INFORMATION_TYPE = "informationType";
     private static final String GEOGRAPHIC_GRANULARITY = "geographicGranularity";
-    private static final String TAXONOMY_CLASSIFICATION_FIELD = "taxonomyClassificationField_taxonomyValues_keyPath";
+    private static final String TAXONOMY_CLASSIFICATION_FIELD = "taxonomyClassificationField_taxonomyAllValues_keyPath";
     private static final String TAXONOMY_TOPIC = "topic";
     private static final String PUBLISHED_BY = "publishedBy";
     private static final String REPORTING_LEVEL = "reportingLevel";

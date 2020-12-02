@@ -20,7 +20,7 @@
             <#list facetFields?keys as key>
                 <#if key == "xmPrimaryDocType">
                     <@facetPrimaryDocType facetFields[key]/>
-                <#elseif key == "taxonomyClassificationField_taxonomyValues_keyPath">
+                <#elseif key == "taxonomyClassificationField_taxonomyAllValues_keyPath">
                     <@facetContentSearchTaxonomy facetFields[key]/>
                 <#elseif key == "searchTab">
                     <#continue>

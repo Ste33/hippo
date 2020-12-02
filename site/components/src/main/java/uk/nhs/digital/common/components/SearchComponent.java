@@ -73,7 +73,7 @@ public class SearchComponent extends CommonComponent {
     private static final String ASSURED_STATUS = "assuredStatus";
     private static final String YEAR = "year";
     private static final String MONTH = "month";
-    private static final String SEARCHTAB = "searchTab";
+    private static final String SEARCH_TAB = "searchTab";
 
     private static final String PUBLICATION_SYSTEM_LEGACY_PUBLICATION = "publicationsystem:legacypublication";
     private static final String PUBLICATION_SYSTEM_PUBLICATION = "publicationsystem:publication";
@@ -176,16 +176,21 @@ public class SearchComponent extends CommonComponent {
             .retrieveField(INFORMATION_TYPE)
             .retrieveField(PUBLISHED_BY)
             .facetField(XM_PRIMARY_DOC_TYPE)
-            .facetField(GEOGRAPHIC_COVERAGE)
-            .facetField(INFORMATION_TYPE)
-            .facetField(GEOGRAPHIC_GRANULARITY)
-            .facetField(PUBLISHED_BY)
-            .facetField(REPORTING_LEVEL)
-            .facetField(ASSURED_STATUS)
-            .facetField(PUBLICLY_ACCESSIBLE)
+            .facetField(TAXONOMY_CLASSIFICATION_FIELD)
             .facetField(YEAR)
-            .facetField(SEARCHTAB)
-            .facetField(TAXONOMY_CLASSIFICATION_FIELD);
+            .facetField(SEARCH_TAB);
+
+        /* Only add the below facets if the search tab query is present with a valid value */
+        if (getAnyParameter(request, SEARCH_TAB) != null && (getAnyParameter(request, SEARCH_TAB).equals("data")
+            || getAnyParameter(request, SEARCH_TAB).equals("services") || getAnyParameter(request, SEARCH_TAB).equals("news"))) {
+            queryBuilder.facetField(GEOGRAPHIC_COVERAGE)
+                .facetField(INFORMATION_TYPE)
+                .facetField(GEOGRAPHIC_GRANULARITY)
+                .facetField(PUBLISHED_BY)
+                .facetField(REPORTING_LEVEL)
+                .facetField(ASSURED_STATUS)
+                .facetField(PUBLICLY_ACCESSIBLE);
+        }
 
         if (getSortOption(request).equals(SORT_DATE_KEY)) {
             queryBuilder.sortBy(SORT_PUBLICATION_DATE, QueryBuilder.SortType.DESC);
@@ -259,8 +264,8 @@ public class SearchComponent extends CommonComponent {
         if (getAnyParameter(request, YEAR) != null) {
             queryBuilder = appendFilter(queryBuilder, YEAR, getAnyParameter(request, YEAR));
         }
-        if (getAnyParameter(request, SEARCHTAB) != null) {
-            queryBuilder = appendFilter(queryBuilder, SEARCHTAB, getAnyParameter(request, SEARCHTAB));
+        if (getAnyParameter(request, SEARCH_TAB) != null) {
+            queryBuilder = appendFilter(queryBuilder, SEARCH_TAB, getAnyParameter(request, SEARCH_TAB));
         }
         if (getAnyParameter(request, TAXONOMY_TOPIC) != null && !getAnyParameter(request, TAXONOMY_TOPIC).equals("root")) {
             queryBuilder = appendFilter(queryBuilder, TAXONOMY_CLASSIFICATION_FIELD, getAnyParameter(request, TAXONOMY_TOPIC));

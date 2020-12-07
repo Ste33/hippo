@@ -22,12 +22,12 @@
                 <#assign hasPublishedDate = item.publisheddatetime?has_content />
 
                 <#assign class = "" />
-                <#if pageable.items?size = 2>
-                    <#assign class = "nhsd-t-col-s-3 nhsd-t-col-m-6" />
-                <#elseif pageable.items?size = 3>
+                <#if pageable.items?size == 3>
                     <#assign class = "nhsd-t-col-s-2 nhsd-t-col-m-4" />
-                <#elseif pageable.items?size = 4>
+                <#elseif pageable.items?size gt 3>
                     <#assign class = "nhsd-t-col-s-3 nhsd-t-col-m-6 nhsd-t-col-l-3" />
+                <#else>
+                    <#assign class = "nhsd-t-col-s-3 nhsd-t-col-m-6" />
                 </#if>
 
                 <div class="nhsd-t-col-xs-2 ${class}">

@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.onehippo.cms7</groupId>
         <artifactId>hippo-cms7-enterprise-release</artifactId>
-        <version>14.2.2</version>
+        <version>14.3.3</version>
         <!-- Please have a look at the property section while upgrading -->
     </parent>
 
@@ -81,7 +81,7 @@
         This behaviour is described in Maven's documentation at:
         http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#project-interpolation-and-variables
         -->
-        <hippo.version>14.1.0</hippo.version>
+        <hippo.version>14.3.3</hippo.version>
         <h2.database.version>1.4.199</h2.database.version>
         <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
         <local-module-deploy-dir>shared/lib</local-module-deploy-dir>
@@ -242,7 +242,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>4.13.1</version>
                 <scope>test</scope>
             </dependency>
 
@@ -794,24 +794,6 @@
                 <configuration>
                     <rules>
                         <reactorModuleConvergence/>
-                        <requireUpperBoundDeps>
-                            <excludes>
-                                <exclude>com.google.guava:guava</exclude>
-                                <exclude>org.slf4j:slf4j-api</exclude>
-                                <exclude>org.slf4j:jcl-over-slf4j</exclude>
-                                <exclude>javax.ws.rs:javax.ws.rs-api</exclude>
-                                <exclude>commons-beanutils:commons-beanutils</exclude>
-                                <exclude>org.ow2.asm:asm</exclude>
-                                <exclude>com.fasterxml.jackson.module:jackson-module-jaxb-annotations</exclude>
-                                <exclude>org.eclipse.jetty:jetty-io</exclude>
-                                <exclude>org.eclipse.jetty:jetty-server</exclude>
-                                <exclude>org.eclipse.jetty:jetty-util</exclude>
-                                <exclude>org.eclipse.jetty:jetty-io</exclude>
-                                <exclude>org.eclipse.jetty:jetty-security</exclude>
-                                <exclude>org.eclipse.jetty:jetty-continuation</exclude>
-                                <exclude>org.eclipse.jetty:jetty-http</exclude>
-                            </excludes>
-                        </requireUpperBoundDeps>
                         <requireJavaVersion>
                             <!-- Any Java 8 version is allowed -->
                             <version>[1.8.0,1.8.1)</version>

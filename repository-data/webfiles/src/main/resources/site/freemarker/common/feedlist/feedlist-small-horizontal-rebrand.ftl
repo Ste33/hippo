@@ -16,7 +16,8 @@
         <div class="nhsd-t-row">
             <#list pageable.items as item>
                 <#assign imageData = getImageData(item) />
-                <#assign hasImageData = imageData?has_content />
+                <#assign imageDataAlt = (imageData[1]?has_content)?then(imageData[1], 'homepage-news-article-img-${item?index}') />
+                <#assign hasImageData = imageData[0]?has_content />
                 <#assign hasTitle = item.title?has_content />
                 <#assign hasSummary = item.shortsummary?has_content />
                 <#assign hasPublishedDate = item.publisheddatetime?has_content />
@@ -39,7 +40,7 @@
                                 <#if hasImageData>
                                     <@hst.link hippobean=imageData[0].original fullyQualified=true var="leadImage" />
                                     <picture class="nhsd-a-picture">
-                                        <img src="${leadImage}" alt="${imageData[1]}">
+                                        <img src="${leadImage}" alt="${imageDataAlt}">
                                     </picture>
                                 </#if>
 
@@ -71,18 +72,27 @@
     </div>
 </div>
 
-<div class="nhsd-t-row">
-    <div class="nhsd-t-col-xs-12 nhsd-t-col-s-6 nhsd-!t-text-align-right">
-        <a class="nhsd-a-button" href="#" target="_blank" rel="external">
-            <span class="nhsd-a-button__label">View all news</span>
-            <span class="nhsd-t-sr-only"> (external link, opens in a new tab)</span>
-        </a>
+
+<#assign hasPrimaryButton = (buttonText?has_content && buttonDestination?has_content) />
+<#assign hasSecondaryButton = (secondaryButtonText?has_content && secondaryButtonDestination?has_content) />
+
+<#if hasPrimaryButton || hasSecondaryButton>
+    <div class="nhsd-t-row">
+        <#if hasPrimaryButton>
+            <div class="nhsd-t-col-xs-12 nhsd-t-col-s-6 nhsd-!t-text-align-right">
+                <a class="nhsd-a-button" href="${buttonDestination}" target="_blank" rel="external">
+                    <span class="nhsd-a-button__label">${buttonText}</span>
+                </a>
+            </div>
+        </#if>
+
+        <#if hasSecondaryButton>
+            <div class="nhsd-t-col-xs-12 nhsd-t-col-s-6 nhsd-!t-text-align-left">
+                <a class="nhsd-a-button nhsd-a-button--outline" href="${secondaryButtonDestination}" target="_blank" rel="external">
+                    <span class="nhsd-a-button__label">${secondaryButtonText}</span>
+                </a>
+            </div>
+        </#if>
     </div>
-    <div class="nhsd-t-col-xs-12 nhsd-t-col-s-6 nhsd-!t-text-align-left">
-        <a class="nhsd-a-button nhsd-a-button--outline" href="#" target="_blank" rel="external">
-            <span class="nhsd-a-button__label">View all events</span>
-            <span class="nhsd-t-sr-only"> (external link, opens in a new tab)</span>
-        </a>
-    </div>
-</div>
+</#if>
 

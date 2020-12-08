@@ -1,10 +1,10 @@
 <#ftl output_format="HTML">
 <#include "../../include/imports.ftl">
 
-<div class="nhsd-row nhsd-u-text-centre" style="background-color: transparent; margin: 20px 0">
+<div class="nhsd-row nhsd-u-text-centre" style="margin: 20px 0">
     <#if pageable?? && pageable.items?has_content>
         <#list pageable.items as item>
-            <div class="nhsd-col-des-3 nhsd-col-tab-3 nhsd-col-mob-1">
+            <div class="nhsd-col-xl-3 nhsd-col-l-3 nhsd-col-m-1">
                 <div class="nhsd-a-box">
                     <#if item.infographics.icon??>
                         <@hst.link hippobean=item.infographics.icon fullyQualified=true var="graphicImage" />

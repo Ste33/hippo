@@ -23,14 +23,14 @@
 
                 <#assign class = "" />
                 <#if pageable.items?size == 3>
-                    <#assign class = "nhsd-t-col-s-2 nhsd-t-col-m-4" />
+                    <#assign class = "nhsd-t-col-s-4" />
                 <#elseif pageable.items?size gt 3>
-                    <#assign class = "nhsd-t-col-s-3 nhsd-t-col-m-6 nhsd-t-col-l-3" />
+                    <#assign class = "nhsd-t-col-s-6 nhsd-t-col-l-3" />
                 <#else>
-                    <#assign class = "nhsd-t-col-s-3 nhsd-t-col-m-6" />
+                    <#assign class = "nhsd-t-col-s-6" />
                 </#if>
 
-                <div class="nhsd-t-col-xs-2 ${class}">
+                <div class="nhsd-t-col-xs-12 ${class}">
                     <article class="nhsd-m-card" id="homepage-news-article-${item?index}">
                         <@hst.link hippobean=item var="linkDestination"/>
                         <a href="${linkDestination}" class="nhsd-m-card__link" aria-label="${item.title}">
@@ -72,13 +72,13 @@
 </div>
 
 <div class="nhsd-t-row">
-    <div class="nhsd-t-col-6 nhsd-!t-text-align-right">
+    <div class="nhsd-t-col-xs-12 nhsd-t-col-s-6 nhsd-!t-text-align-right">
         <a class="nhsd-a-button" href="#" target="_blank" rel="external">
             <span class="nhsd-a-button__label">View all news</span>
             <span class="nhsd-t-sr-only"> (external link, opens in a new tab)</span>
         </a>
     </div>
-    <div class="nhsd-t-col-6 nhsd-!t-text-align-left">
+    <div class="nhsd-t-col-xs-12 nhsd-t-col-s-6 nhsd-!t-text-align-left">
         <a class="nhsd-a-button nhsd-a-button--outline" href="#" target="_blank" rel="external">
             <span class="nhsd-a-button__label">View all events</span>
             <span class="nhsd-t-sr-only"> (external link, opens in a new tab)</span>
@@ -86,61 +86,3 @@
     </div>
 </div>
 
-
-
-<#--
-<#list pageable.items>
-    <div class="nhsd-row">
-        <div class="nhsd-col-12">
-        <#if (titleText)?has_content >
-            <h2 class="section-title feedlist__title">${titleText}</h2>
-        </#if>
-        </div>
-
-            <#items as feedItem>
-                <#assign imageData = getImageData(feedItem) />
-                <#assign feedItemTitle = feedItem.title />
-                <#assign feedItemShortSummary = feedItem.shortsummary />
-
-                <#assign date = '' />
-                <#assign dateTo = '' />
-                <#if feedItem.dateOfPublication?has_content>
-                    <#assign date = feedItem.dateOfPublication.time />
-                <#elseif feedItem.publisheddatetime?has_content>
-                    <#assign date = feedItem.publisheddatetime.time />
-                <#elseif (feedItem.events)??>
-                <#-- event start and end dates
-                    <#assign dateRangeData = getEventDateRangeData(feedItem.events) />
-                    <#if dateRangeData?size gt 0>
-                        <#assign date = dateRangeData.minStartTime />
-                        <#if dateRangeData.comparableStartDate != dateRangeData.comparableEndDate>
-                            <#assign dateTo = dateRangeData.maxEndTime />
-                        </#if>
-                    </#if>
-                </#if>
-        <div class="nhsd-col-m-6 nhsd-col-l-2 nhsd-col-xl-2">
-
-                <@hst.link hippobean=feedItem var="linkDestination"/>
-
-                <@mediaItem
-                image=imageData[0]
-                alttext=imageData[1]
-                feedItemTitle=feedItemTitle
-                feedItemShortSummary=feedItemShortSummary
-                linkDestination=linkDestination
-                date=date
-                dateTo=dateTo
-                className="feedlist__item"
-                />
-            </div>
-            </#items>
-        <#if (buttonDestination)?has_content && (buttonText)?has_content >
-            <div class="feedlist__button-container">
-                <a class="nhsd-a-button feedlist__button" href="${buttonDestination}">
-                    <span class="nhsd-a-button__label">${buttonText}</span>
-                </a>
-            </div>
-        </#if>
-    </section>
-</#list>
-        -->

@@ -2,6 +2,7 @@
 <#include "../../include/imports.ftl">
 <#include "../macro/sections/statistic.ftl">
 <#include "../macro/iconGenerator.ftl">
+<#include "../macro/gridColumnGenerator.ftl">
 
 <div class="nhsd-o-graphic-block-list">
     <div class="nhsd-t-grid nhsd-!t-no-gutters">
@@ -12,13 +13,15 @@
                     <#assign hasStats = item.modules?has_content />
                     <#assign hasImage = item.image?has_content />
 
-                    <div class="nhsd-t-col-xs-12 nhsd-t-col-s-4 nhsd-t-col-l-3">
+                    <div class="nhsd-t-col-xs-12 ${getGridCol(pageable.items?size)}">
                         <div class="nhsd-m-graphic-block">
                             <#if hasImage>
+                                <#assign altText = item.altText?has_content?then(item.altText, "Image for graphic block ${item?index}") />
                                 <@hst.link hippobean=item.image fullyQualified=true var="graphicImage" />
+
                                 <div class="nhsd-m-graphic-block__picture">
                                     <picture class="nhsd-a-picture nhsd-a-picture--square">
-                                        <img src="${graphicImage}" alt="Image for graphic block ${item?index}">
+                                        <img src="${graphicImage}" alt="${altText}">
                                     </picture>
                                 </div>
                             </#if>
@@ -63,9 +66,6 @@
                         </div>
                     </div>
                 </#list>
-                <div class="nhsd-t-col-12">
-                    <hr class="nhsd-a-horizontal-rule nhsd-a-horizontal-rule--size-s" />
-                </div>
             </#if>
         </div>
     </div>

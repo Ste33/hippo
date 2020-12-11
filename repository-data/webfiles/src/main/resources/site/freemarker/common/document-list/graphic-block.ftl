@@ -4,6 +4,9 @@
 <#include "../macro/iconGenerator.ftl">
 <#include "../macro/gridColumnGenerator.ftl">
 
+<@hst.setBundle basename="rb.generic.texts"/>
+<@fmt.message key="text.sr-only-link" var="srOnlyLinkText" />
+
 <div class="nhsd-o-graphic-block-list">
     <div class="nhsd-t-grid nhsd-!t-no-gutters">
         <div class="nhsd-t-row nhsd-t-row--centred nhsd-o-graphic-block-list__items">
@@ -13,7 +16,7 @@
                     <#assign hasStats = item.modules?has_content />
                     <#assign hasImage = item.image?has_content />
 
-                    <div class="nhsd-t-col-xs-12 ${getGridCol(pageable.items?size)}">
+                    <div class="nhsd-t-col-xs-12 ${getGridCol(pageable.items?size, "s")}">
                         <div class="nhsd-m-graphic-block">
                             <#if hasImage>
                                 <#assign altText = item.altText?has_content?then(item.altText, "Image for graphic block ${item?index}") />
@@ -40,18 +43,21 @@
                                 <#else>
                                 <div class="nhsd-m-graphic-block__heading">
                                 </#if>
-                                    <span class="nhsd-t-heading-xl nhsd-!t-margin-bottom-0">${stats.number}${getSuffix(stats.suffix)}
+                                    <span class="nhsd-t-heading-xl nhsd-!t-margin-bottom-0">${getPrefix(stats.prefix)}${stats.number}${getSuffix(stats.suffix)}
                                         <#if stats.trend != "none">
                                             <@buildInlineSvg stats.trend />
                                         </#if>
                                     </span>
-                                    <#--<span class="nhsd-t-heading-xs">-->
-                                    <@hst.html hippohtml=stats.headlineDescription />
+
+                                    <@hst.html hippohtml=stats.headlineDescription var="headlineDesc"/>
+                                    <span class="nhsd-t-heading-xs">
+                                        ${headlineDesc?replace('<[^>]+>','','r')}
+                                    </span>
 
                                     <#if hasLinks>
                                         <#if item.items[0].linkType == "external">
                                             <#--screen reader use-->
-                                            <span class="nhsd-t-sr-only">(external link, opens in a new window)</span>
+                                            <span class="nhsd-t-sr-only">${srOnlyLinkText}</span>
                                         </#if>
                                     </#if>
                                 <#if hasLinks>
@@ -60,8 +66,10 @@
                                     </div>
                                 </#if>
 
-                                <#--<p class="nhsd-t-body-s">-->
-                                <@hst.html hippohtml=stats.furtherQualifyingInformation />
+                                <@hst.html hippohtml=stats.furtherQualifyingInformation var="furtherQualInfo"/>
+                                <p class="nhsd-t-body-s">
+                                    ${furtherQualInfo?replace('<[^>]+>','','r')}
+                                </p>
                             </#if>
                         </div>
                     </div>

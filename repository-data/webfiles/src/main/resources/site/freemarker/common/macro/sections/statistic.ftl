@@ -23,7 +23,7 @@
     <#if type == 'percentage' >
         <#return '%' />
     <#elseif type == 'plus' >
-        <#return ' +' />
+        <#return '+' />
     <#elseif type == 'millions' >
         <#return 'm' />
     <#elseif type == 'billions' >

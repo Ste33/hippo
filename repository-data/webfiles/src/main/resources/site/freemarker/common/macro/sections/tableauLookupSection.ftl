@@ -192,7 +192,8 @@
                         return null;
                     }
                 }
-                return "https://d3167zvwcf7itc.cloudfront.net/postcodes/" + _formatPostcode() + ".json";
+                <@hst.setBundle basename="tableau.postcode.configuration"/>
+                return "<@fmt.message key="postcode-api-address"/>" + _formatPostcode() + ".json";
             }
 
             function _clearValidationMessage(el) {

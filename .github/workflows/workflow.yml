@@ -7,21 +7,26 @@
      branches: [ master ]
      
  jobs:
-   build_and_test:
-     runs-on: ubuntu-latest
-     
-     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8 
-        env:
-         HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }}
-         HIPPO_MAVEN_PASSWORD: ${{ secrets.HIPPO_MAVEN_PASSWORD }}  
+   
+  build_and_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8 for Shared Runner
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
         
-      - name: Build project with Maven
-        run: mvn -B package --file pom.xml
+    - name: Build project with Maven
+      run: mvn -B package --file pom.xml
 
 
 # name: Maven CI/CD
@@ -78,3 +83,16 @@
 #        run: mvn -B -e -X clean deploy -DskipTests
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# build_and_test:
+#     runs-on: ubuntu-latest
+     
+#     steps:
+#      - uses: actions/checkout@v2
+#      - name: Set up JDK 1.8
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.8 
+#        env:
+#         HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }}
+#         HIPPO_MAVEN_PASSWORD: ${{ secrets.HIPPO_MAVEN_PASSWORD }}  

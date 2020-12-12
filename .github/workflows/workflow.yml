@@ -20,7 +20,7 @@
       - name: Build project with Maven
         run: mvn -B package --file pom.xml
         env:
-         HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }
+         HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }}
          HIPPO_MAVEN_PASSWORD: ${{ secrets.HIPPO_MAVEN_PASSWORD }}
 
 

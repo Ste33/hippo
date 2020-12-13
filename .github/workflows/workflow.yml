@@ -19,16 +19,19 @@
       with:
         java-version: 1.8
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
-
-
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+        settings-path: .m2/settings.xml # location for the settings.xml file
+    - name: Maven Package
+      run: mvn -B clean package
+     
+    - name: Maven Verify
+      run: mvn -B clean verify
         
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
 
-
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -s .m2/settings.xml
+      
 # name: Maven CI/CD
 
 # on:

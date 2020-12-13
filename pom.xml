@@ -626,7 +626,12 @@
 
         </dependencies>
     </dependencyManagement>
-
+    
+    
+<plugins>
+    <!--
+                    This plugin configuration is used to store Jacoco maven settings only. It part of the unit testing for the Maven build itself.
+                -->
     <build>
         <defaultGoal>package</defaultGoal>
         <pluginManagement>

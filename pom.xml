@@ -256,7 +256,6 @@
         </pluginRepository>
         <!-- @formatter:on -->
     </pluginRepositories>  
-    <properties>
         <!-- Suppress 'Can not resolve symbol' errors in pom editor of IntelliJ IDEA -->
         <!-- maven and plugin properties -->
         <argLine></argLine>

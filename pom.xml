@@ -4262,8 +4262,6 @@
         <!-- @formatter:on -->
     </profiles>
 
-    <build>
-        <defaultGoal>package</defaultGoal>
         <pluginManagement>
             <plugins>
                 <!--

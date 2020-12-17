@@ -131,6 +131,540 @@
         <commonmark.version>0.15.0</commonmark.version>
 
         <hystrix-javanica.version>1.5.18</hystrix-javanica.version>
+          <!-- Suppress 'Can not resolve symbol' errors in pom editor of IntelliJ IDEA -->
+        <!-- maven and plugin properties -->
+        <argLine></argLine>
+
+        <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
+        <checkstyle.failOnViolation>false</checkstyle.failOnViolation>
+        <checkstyle.failsOnError>false</checkstyle.failsOnError>
+        <checkstyle.logViolationsToConsole>true</checkstyle.logViolationsToConsole>
+        <checkstyle.maxAllowedViolations>10</checkstyle.maxAllowedViolations>
+        <!-- Violations to ignore. This is a comma-separated list, each value being either a rule name, a rule category or a java package name of rule class. -->
+        <!-- see: https://issues.apache.org/jira/browse/MCHECKSTYLE-347?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&focusedCommentId=16314555#comment-16314555 -->
+        <checkstyle.violation.ignore>foo,bar</checkstyle.violation.ignore>
+        <!-- Valid values are "error", "warning" and "info" -->
+        <checkstyle.violationSeverity>warning</checkstyle.violationSeverity>
+
+        <dockerfile.skip>false</dockerfile.skip>
+        <docker.image.prefix></docker.image.prefix>
+
+        <downloadSources>true</downloadSources>
+
+        <!-- findbugs.effort: Min, Default, Max -->
+        <!--<findbugs.effort>Default</findbugs.effort>-->
+        <!--<findbugs.failOnError>false</findbugs.failOnError>-->
+        <!--<findbugs.fork>true</findbugs.fork>-->
+        <!--<findbugs.includeTests>false</findbugs.includeTests>-->
+        <!--<findbugs.jvmArgs>-Xmx1024m -Xms128m -XX:MaxMetaspaceSize=512m</findbugs.jvmArgs>-->
+        <!--<findbugs.relaxed>false</findbugs.relaxed>-->
+        <!-- findbugs.threshold: High, Default, Low, Ignore, If set to "High", only high confidence bugs are reported -->
+        <!--<findbugs.threshold>Default</findbugs.threshold>-->
+
+        <linkXRef>true</linkXRef>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+        <maven.javadoc.failsOnError>false</maven.javadoc.failsOnError>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+        <maven.source.skip>false</maven.source.skip>
+        <maven.test.skip>false</maven.test.skip>
+
+        <mvnExecutable>mvn</mvnExecutable>
+
+        <pmd.failOnViolation>false</pmd.failOnViolation>
+        <!-- Minimum Priority = 5 Maximum Priority = 0 Default value is: 5. -->
+        <pmd.failurePriority>4</pmd.failurePriority>
+        <pmd.maxAllowedViolations>10</pmd.maxAllowedViolations>
+        <pmd.printFailingErrors>true</pmd.printFailingErrors>
+        <pmd.verbose>false</pmd.verbose>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <skipITs>false</skipITs>
+
+        <!--
+        publish, preview, issue .
+        sonar.analysis.mode Deprecated since SQ 6.6
+        This parameter is set to preview as part of non-Developer Edition PR decoration.
+        https://github.com/SonarQubeCommunity/sonar-build-breaker
+        This build breaker is only available in preview modes (sonar.analysis.mode=preview or sonar.analysis.mode=issues).
+        In publish mode, issue severity data is not available to post-job checkers.
+        -->
+        <sonar.analysis.mode>publish</sonar.analysis.mode>
+        <!-- Disabled, INFO, MINOR, MAJOR, CRITICAL, BLOCKER -->
+        <sonar.buildbreaker.preview.issuesSeverity>MAJOR</sonar.buildbreaker.preview.issuesSeverity>
+        <sonar.buildbreaker.queryInterval>10000</sonar.buildbreaker.queryInterval>
+        <sonar.buildbreaker.queryMaxAttempts>30</sonar.buildbreaker.queryMaxAttempts>
+        <sonar.buildbreaker.skip>true</sonar.buildbreaker.skip>
+        <sonar.exclusions>**/git.properties</sonar.exclusions>
+
+        <surefire.fork.count>1</surefire.fork.count>
+        <surefire.fork.reuse>false</surefire.fork.reuse>
+
+
+        <!-- maven-build properties -->
+        <checkstyle.config.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/checkstyle/google_checks_8.10.xml</checkstyle.config.location>
+        <!-- https://npm.taobao.org/mirrors/node/ -->
+        <frontend.nodeDownloadRoot>https://nodejs.org/dist/</frontend.nodeDownloadRoot>
+        <!-- http://registry.npm.taobao.org/npm/-/ -->
+        <frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</frontend.npmDownloadRoot>
+        <git.commit.id.skip>false</git.commit.id.skip>
+        <github.global.oauth2Token>${git.auth.token}</github.global.oauth2Token>
+        <github.global.repositoryName>unknown</github.global.repositoryName>
+        <github.global.repositoryOwner>unknown</github.global.repositoryOwner>
+        <github.site.path></github.site.path>
+        <pmd.ruleset.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/pmd/pmd-ruleset-6.8.0.xml</pmd.ruleset.location>
+        <site.path>${project.groupId}</site.path>
+
+
+        <!-- custom properties -->
+        <jacoco.reportPath>${project.build.directory}/jacoco.exec</jacoco.reportPath>
+        <jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</jacoco.itReportPath>
+
+        <!-- mvn install -Dprofile="profile name" -DprofileFormat=JSON,HTML -->
+        <maven-profiler-report-directory>${maven.multiModuleProjectDirectory}/.mvn/profiler-report</maven-profiler-report-directory>
+
+        <!--<relative.parent.dir>.</relative.parent.dir>-->
+        <src.generated.dir>**/generated/**</src.generated.dir>
+
+
+        <!-- versions -->
+        <groovy.version>2.5.6</groovy.version>
+        <kotlin.version>1.3.21</kotlin.version>
+        <scala.version>2.12.8</scala.version>
+
+
+        <version.asm>6.2</version.asm>
+        <version.javassist>3.23.1-GA</version.javassist>
+
+        <version.animal-sniffer-maven-plugin>1.16</version.animal-sniffer-maven-plugin>
+        <version.ant-contrib>20020829</version.ant-contrib>
+        <version.apt-maven-plugin>1.1.3</version.apt-maven-plugin>
+        <version.asciidoctor-maven-plugin>1.5.7.1</version.asciidoctor-maven-plugin>
+        <version.build-helper-maven-plugin>3.0.0</version.build-helper-maven-plugin>
+
+        <!--<version.checkstyle>6.19</version.checkstyle>-->
+        <version.checkstyle>8.14</version.checkstyle>
+        <version.clirr-maven-plugin>2.8</version.clirr-maven-plugin>
+        <!--<version.cobertura-maven-plugin>2.7</version.cobertura-maven-plugin>-->
+        <version.com.google.errorprone_error_prone_core>2.3.1</version.com.google.errorprone_error_prone_core>
+
+        <version.dependency-check-maven>5.0.0-M2</version.dependency-check-maven>
+        <!-- Fix error of multiple processes connect to same h2 in embedded mode, use mixed mode replace (AUTO_SERVER=TRUE). -->
+        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;</dependency-check-maven.connectionString>-->
+        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;MV_STORE=FALSE;</dependency-check-maven.connectionString>-->
+
+        <version.doxia-module-markdown>1.8</version.doxia-module-markdown>
+
+        <version.echo-maven-plugin>0.3.0</version.echo-maven-plugin>
+
+        <!-- Findbugs is no longer maintained, please use Spotbugs -->
+        <version.findbugs-annotations>3.0.1u2</version.findbugs-annotations>
+        <version.findbugs-jsr305>3.0.2</version.findbugs-jsr305>
+        <!--<version.findbugs-maven-plugin>3.0.5</version.findbugs-maven-plugin>-->
+
+        <version.spotbugs>3.1.12</version.spotbugs>
+        <version.spotbugs-maven-plugin>3.1.11</version.spotbugs-maven-plugin>
+
+        <version.frontend-maven-plugin>1.7.5</version.frontend-maven-plugin>
+
+        <version.gitflow-maven-plugin>1.11.0</version.gitflow-maven-plugin>
+
+        <!--<version.gmaven-plugin>1.0</version.gmaven-plugin>-->
+
+        <version.groovy-maven-plugin>2.1</version.groovy-maven-plugin>
+        <!-- see: http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html -->
+        <!--<version.groovy-eclipse-compiler>2.9.3-01</version.groovy-eclipse-compiler>-->
+        <!--<version.groovy-eclipse-batch>2.4.15-01</version.groovy-eclipse-batch>-->
+        <version.groovy-eclipse-compiler>3.3.0-01</version.groovy-eclipse-compiler>
+        <version.groovy-eclipse-batch>2.5.6-01</version.groovy-eclipse-batch>
+
+        <version.javax.activation>1.1.1</version.javax.activation>
+        <version.java18>1.0</version.java18>
+        <version.jdepend-maven-plugin>2.0</version.jdepend-maven-plugin>
+        <version.jetbrains-annotations>16.0.3</version.jetbrains-annotations>
+        <version.jsch>0.1.54</version.jsch>
+        <version.lombok>1.18.8</version.lombok>
+
+        <version.maven-antrun-plugin>1.8</version.maven-antrun-plugin>
+        <version.maven-changes-plugin>2.12.1</version.maven-changes-plugin>
+        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
+        <version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
+        <version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
+        <version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
+        <!--<version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>-->
+        <version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
+        <version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
+        <!--<version.maven-failsafe-plugin>2.21.0</version.maven-failsafe-plugin>-->
+        <version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
+        <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
+        <!--<version.maven-install-plugin>2.5.2</version.maven-install-plugin>-->
+        <version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
+        <version.maven-jar-plugin>3.1.2</version.maven-jar-plugin>
+        <version.maven-javadoc-plugin>3.1.0</version.maven-javadoc-plugin>
+        <version.maven-jxr-plugin>3.0.0</version.maven-jxr-plugin>
+        <!-- maven-pmd-plugin:3.6   depends on net.sourceforge.pmd:pmd:5.3.5 -->
+        <!-- maven-pmd-plugin:3.7   depends on net.sourceforge.pmd:pmd:5.5.1 -->
+        <!-- maven-pmd-plugin:3.9.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
+        <!-- maven-pmd-plugin:3.10.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
+        <!-- maven-pmd-plugin:3.11.0 depends on net.sourceforge.pmd:pmd:6.8.0 -->
+        <version.maven-pmd-plugin>3.11.0</version.maven-pmd-plugin>
+        <version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
+        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+        <version.maven-site-plugin>3.7.1</version.maven-site-plugin>
+        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+        <!--<version.maven-surefire-plugin>2.21.0</version.maven-surefire-plugin>-->
+        <version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
+        <version.maven-surefire-report-plugin>3.0.0-M3</version.maven-surefire-report-plugin>
+        <version.maven-toolchains-plugin>1.1</version.maven-toolchains-plugin>
+
+        <version.nexus-staging-maven-plugin>1.6.8</version.nexus-staging-maven-plugin>
+
+        <version.org.codehaus.plexus_plexus-compiler-javac-errorprone>2.8.5</version.org.codehaus.plexus_plexus-compiler-javac-errorprone>
+        <version.org.jacoco_jacoco>0.8.3</version.org.jacoco_jacoco>
+        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.3.0.13828</version.org.sonarsource.java_sonar-jacoco-listeners>-->
+        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.9.1.16423</version.org.sonarsource.java_sonar-jacoco-listeners>-->
+        <version.org.sonarsource.java_sonar-jacoco-listeners>5.11.0.17289</version.org.sonarsource.java_sonar-jacoco-listeners>
+
+        <version.pegdown>1.6.0</version.pegdown>
+        <version.properties-maven-plugin>1.0.0</version.properties-maven-plugin>
+        <version.qualinsight-mojo-cobertura-core>2.0.0</version.qualinsight-mojo-cobertura-core>
+
+        <version.scala-maven-plugin>4.0.1</version.scala-maven-plugin>
+
+        <!--<version.sonar-maven-plugin>3.4.1.1168</version.sonar-maven-plugin>-->
+        <!--<version.sonar-maven-plugin>3.5.0.1254</version.sonar-maven-plugin>-->
+        <version.sonar-maven-plugin>3.6.0.1398</version.sonar-maven-plugin>
+
+        <version.taglist-maven-plugin>2.4</version.taglist-maven-plugin>
+        <version.umlgraph>5.6.6</version.umlgraph>
+        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
+
+        <version.io.fabric8_docker-maven-plugin>0.28.0</version.io.fabric8_docker-maven-plugin>
+        <version.com.spotify_docker-maven-plugin>1.2.0</version.com.spotify_docker-maven-plugin>
+        <version.com.spotify_dockerfile-maven-plugin>1.4.10</version.com.spotify_dockerfile-maven-plugin>
+
+        <!-- Why org.codehaus.mojo:wagon-maven-plugin:wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6?
+            see: https://www.mail-archive.com/users@maven.apache.org/msg129243.html -->
+        <!--http://www.mojohaus.org/wagon-maven-plugin/usage.html-->
+        <!--http://www.mojohaus.org/wagon-maven-plugin/-->
+        <version.wagon-maven-plugin>wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6</version.wagon-maven-plugin>
+        <version.wagon-ssh>3.0.0</version.wagon-ssh>
+        <version.wagon-webdav-jackrabbit>3.0.0</version.wagon-webdav-jackrabbit>
+        <!--<version.wrapper-maven-plugin>0.0.4</version.wrapper-maven-plugin>-->
+
+        <custom.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</custom.checkstyle.config.location>
+        <custom.docker.registry.url>https://docker.io/v2/</custom.docker.registry.url>
+        <custom.frontend.nodeDownloadRoot>https://nodejs.org/dist/</custom.frontend.nodeDownloadRoot>
+        <custom.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</custom.frontend.npmDownloadRoot>
+        <!--<custom.nexus2>https://oss.sonatype.org/</custom.nexus2>-->
+        <custom.nexus3>https://nexus3.infra.top/nexus/</custom.nexus3>
+        <custom.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</custom.pmd.ruleset.location>
+        <custom.sonar.host.url>https://sonarcloud.io</custom.sonar.host.url>
+        <custom.repository.url>${custom.nexus3}repository/maven-releases/</custom.repository.url>
+        <custom.snapshotRepository.url>${custom.nexus3}repository/maven-snapshots/</custom.snapshotRepository.url>
+        <custom.mvnsite.url>dav:${custom.nexus3}repository/mvnsite/${site.path}/</custom.mvnsite.url>
+        <custom.repository.releases.url>${custom.nexus3}repository/maven-releases/</custom.repository.releases.url>
+        <custom.repository.snapshots.url>${custom.nexus3}repository/maven-snapshots/</custom.repository.snapshots.url>
+        <custom.repository.third-party.url>${custom.nexus3}repository/maven-thirdparty/</custom.repository.third-party.url>
+
+        <ossrh.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</ossrh.checkstyle.config.location>
+        <ossrh.docker.registry.url>https://docker.io/v2/</ossrh.docker.registry.url>
+        <ossrh.frontend.nodeDownloadRoot>https://nodejs.org/dist/</ossrh.frontend.nodeDownloadRoot>
+        <ossrh.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</ossrh.frontend.npmDownloadRoot>
+        <ossrh.nexus2>https://oss.sonatype.org/</ossrh.nexus2>
+        <ossrh.nexus3>https://nexus3.infra.top/nexus/</ossrh.nexus3>
+        <ossrh.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</ossrh.pmd.ruleset.location>
+        <ossrh.sonar.host.url>https://sonarcloud.io</ossrh.sonar.host.url>
+        <ossrh.repository.url>${ossrh.nexus2}service/local/staging/deploy/maven2/</ossrh.repository.url>
+        <ossrh.snapshotRepository.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.snapshotRepository.url>
+        <ossrh.mvnsite.url>dav:${ossrh.nexus3}repository/mvnsite/${site.path}/</ossrh.mvnsite.url>
+        <ossrh.repository.releases.url>${ossrh.nexus2}content/repositories/releases/</ossrh.repository.releases.url>
+        <ossrh.repository.snapshots.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.repository.snapshots.url>
+        <!--<ossrh.repository.third-party.url></ossrh.repository.third-party.url>-->
+
+        <local.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</local.checkstyle.config.location>
+        <local.docker.registry.url>http://nexus3:5000/v2/</local.docker.registry.url>
+        <local.frontend.nodeDownloadRoot>https://nodejs.org/dist/</local.frontend.nodeDownloadRoot>
+        <local.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</local.frontend.npmDownloadRoot>
+        <!--<local.nexus2>http://nexus2:28081/nexus/</local.nexus2>-->
+        <local.nexus3>http://nexus3:38081/nexus/</local.nexus3>
+        <local.sonar.host.url>http://sonarqube:9000</local.sonar.host.url>
+        <local.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</local.pmd.ruleset.location>
+        <local.repository.url>${local.nexus3}repository/maven-releases/</local.repository.url>
+        <local.snapshotRepository.url>${local.nexus3}repository/maven-snapshots/</local.snapshotRepository.url>
+        <local.mvnsite.url>dav:${local.nexus3}repository/mvnsite/${site.path}/</local.mvnsite.url>
+        <local.repository.releases.url>${local.nexus3}repository/maven-releases/</local.repository.releases.url>
+        <local.repository.snapshots.url>${local.nexus3}repository/maven-snapshots/</local.repository.snapshots.url>
+        <local.repository.third-party.url>${local.nexus3}repository/maven-thirdparty/</local.repository.third-party.url>
+        <!-- Suppress 'Can not resolve symbol' errors in pom editor of IntelliJ IDEA -->
+        <!-- maven and plugin properties -->
+        <argLine></argLine>
+
+        <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
+        <checkstyle.failOnViolation>false</checkstyle.failOnViolation>
+        <checkstyle.failsOnError>false</checkstyle.failsOnError>
+        <checkstyle.logViolationsToConsole>true</checkstyle.logViolationsToConsole>
+        <checkstyle.maxAllowedViolations>10</checkstyle.maxAllowedViolations>
+        <!-- Violations to ignore. This is a comma-separated list, each value being either a rule name, a rule category or a java package name of rule class. -->
+        <!-- see: https://issues.apache.org/jira/browse/MCHECKSTYLE-347?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&focusedCommentId=16314555#comment-16314555 -->
+        <checkstyle.violation.ignore>foo,bar</checkstyle.violation.ignore>
+        <!-- Valid values are "error", "warning" and "info" -->
+        <checkstyle.violationSeverity>warning</checkstyle.violationSeverity>
+
+        <dockerfile.skip>false</dockerfile.skip>
+        <docker.image.prefix></docker.image.prefix>
+
+        <downloadSources>true</downloadSources>
+
+        <!-- findbugs.effort: Min, Default, Max -->
+        <!--<findbugs.effort>Default</findbugs.effort>-->
+        <!--<findbugs.failOnError>false</findbugs.failOnError>-->
+        <!--<findbugs.fork>true</findbugs.fork>-->
+        <!--<findbugs.includeTests>false</findbugs.includeTests>-->
+        <!--<findbugs.jvmArgs>-Xmx1024m -Xms128m -XX:MaxMetaspaceSize=512m</findbugs.jvmArgs>-->
+        <!--<findbugs.relaxed>false</findbugs.relaxed>-->
+        <!-- findbugs.threshold: High, Default, Low, Ignore, If set to "High", only high confidence bugs are reported -->
+        <!--<findbugs.threshold>Default</findbugs.threshold>-->
+
+        <linkXRef>true</linkXRef>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+        <maven.javadoc.failsOnError>false</maven.javadoc.failsOnError>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+        <maven.source.skip>false</maven.source.skip>
+        <maven.test.skip>false</maven.test.skip>
+
+        <mvnExecutable>mvn</mvnExecutable>
+
+        <pmd.failOnViolation>false</pmd.failOnViolation>
+        <!-- Minimum Priority = 5 Maximum Priority = 0 Default value is: 5. -->
+        <pmd.failurePriority>4</pmd.failurePriority>
+        <pmd.maxAllowedViolations>10</pmd.maxAllowedViolations>
+        <pmd.printFailingErrors>true</pmd.printFailingErrors>
+        <pmd.verbose>false</pmd.verbose>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <skipITs>false</skipITs>
+
+        <!--
+        publish, preview, issue .
+        sonar.analysis.mode Deprecated since SQ 6.6
+        This parameter is set to preview as part of non-Developer Edition PR decoration.
+        https://github.com/SonarQubeCommunity/sonar-build-breaker
+        This build breaker is only available in preview modes (sonar.analysis.mode=preview or sonar.analysis.mode=issues).
+        In publish mode, issue severity data is not available to post-job checkers.
+        -->
+        <sonar.analysis.mode>publish</sonar.analysis.mode>
+        <!-- Disabled, INFO, MINOR, MAJOR, CRITICAL, BLOCKER -->
+        <sonar.buildbreaker.preview.issuesSeverity>MAJOR</sonar.buildbreaker.preview.issuesSeverity>
+        <sonar.buildbreaker.queryInterval>10000</sonar.buildbreaker.queryInterval>
+        <sonar.buildbreaker.queryMaxAttempts>30</sonar.buildbreaker.queryMaxAttempts>
+        <sonar.buildbreaker.skip>true</sonar.buildbreaker.skip>
+        <sonar.exclusions>**/git.properties</sonar.exclusions>
+
+        <surefire.fork.count>1</surefire.fork.count>
+        <surefire.fork.reuse>false</surefire.fork.reuse>
+
+
+        <!-- maven-build properties -->
+        <checkstyle.config.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/checkstyle/google_checks_8.10.xml</checkstyle.config.location>
+        <!-- https://npm.taobao.org/mirrors/node/ -->
+        <frontend.nodeDownloadRoot>https://nodejs.org/dist/</frontend.nodeDownloadRoot>
+        <!-- http://registry.npm.taobao.org/npm/-/ -->
+        <frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</frontend.npmDownloadRoot>
+        <git.commit.id.skip>false</git.commit.id.skip>
+        <github.global.oauth2Token>${git.auth.token}</github.global.oauth2Token>
+        <github.global.repositoryName>unknown</github.global.repositoryName>
+        <github.global.repositoryOwner>unknown</github.global.repositoryOwner>
+        <github.site.path></github.site.path>
+        <pmd.ruleset.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/pmd/pmd-ruleset-6.8.0.xml</pmd.ruleset.location>
+        <site.path>${project.groupId}</site.path>
+
+
+        <!-- custom properties -->
+        <jacoco.reportPath>${project.build.directory}/jacoco.exec</jacoco.reportPath>
+        <jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</jacoco.itReportPath>
+
+        <!-- mvn install -Dprofile="profile name" -DprofileFormat=JSON,HTML -->
+        <maven-profiler-report-directory>${maven.multiModuleProjectDirectory}/.mvn/profiler-report</maven-profiler-report-directory>
+
+        <!--<relative.parent.dir>.</relative.parent.dir>-->
+        <src.generated.dir>**/generated/**</src.generated.dir>
+
+
+        <!-- versions -->
+        <groovy.version>2.5.6</groovy.version>
+        <kotlin.version>1.3.21</kotlin.version>
+        <scala.version>2.12.8</scala.version>
+
+
+        <version.asm>6.2</version.asm>
+        <version.javassist>3.23.1-GA</version.javassist>
+
+        <version.animal-sniffer-maven-plugin>1.16</version.animal-sniffer-maven-plugin>
+        <version.ant-contrib>20020829</version.ant-contrib>
+        <version.apt-maven-plugin>1.1.3</version.apt-maven-plugin>
+        <version.asciidoctor-maven-plugin>1.5.7.1</version.asciidoctor-maven-plugin>
+        <version.build-helper-maven-plugin>3.0.0</version.build-helper-maven-plugin>
+
+        <!--<version.checkstyle>6.19</version.checkstyle>-->
+        <version.checkstyle>8.14</version.checkstyle>
+        <version.clirr-maven-plugin>2.8</version.clirr-maven-plugin>
+        <!--<version.cobertura-maven-plugin>2.7</version.cobertura-maven-plugin>-->
+        <version.com.google.errorprone_error_prone_core>2.3.1</version.com.google.errorprone_error_prone_core>
+
+        <version.dependency-check-maven>5.0.0-M2</version.dependency-check-maven>
+        <!-- Fix error of multiple processes connect to same h2 in embedded mode, use mixed mode replace (AUTO_SERVER=TRUE). -->
+        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;</dependency-check-maven.connectionString>-->
+        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;MV_STORE=FALSE;</dependency-check-maven.connectionString>-->
+
+        <version.doxia-module-markdown>1.8</version.doxia-module-markdown>
+
+        <version.echo-maven-plugin>0.3.0</version.echo-maven-plugin>
+
+        <!-- Findbugs is no longer maintained, please use Spotbugs -->
+        <version.findbugs-annotations>3.0.1u2</version.findbugs-annotations>
+        <version.findbugs-jsr305>3.0.2</version.findbugs-jsr305>
+        <!--<version.findbugs-maven-plugin>3.0.5</version.findbugs-maven-plugin>-->
+
+        <version.spotbugs>3.1.12</version.spotbugs>
+        <version.spotbugs-maven-plugin>3.1.11</version.spotbugs-maven-plugin>
+
+        <version.frontend-maven-plugin>1.7.5</version.frontend-maven-plugin>
+
+        <version.gitflow-maven-plugin>1.11.0</version.gitflow-maven-plugin>
+
+        <!--<version.gmaven-plugin>1.0</version.gmaven-plugin>-->
+
+        <version.groovy-maven-plugin>2.1</version.groovy-maven-plugin>
+        <!-- see: http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html -->
+        <!--<version.groovy-eclipse-compiler>2.9.3-01</version.groovy-eclipse-compiler>-->
+        <!--<version.groovy-eclipse-batch>2.4.15-01</version.groovy-eclipse-batch>-->
+        <version.groovy-eclipse-compiler>3.3.0-01</version.groovy-eclipse-compiler>
+        <version.groovy-eclipse-batch>2.5.6-01</version.groovy-eclipse-batch>
+
+        <version.javax.activation>1.1.1</version.javax.activation>
+        <version.java18>1.0</version.java18>
+        <version.jdepend-maven-plugin>2.0</version.jdepend-maven-plugin>
+        <version.jetbrains-annotations>16.0.3</version.jetbrains-annotations>
+        <version.jsch>0.1.54</version.jsch>
+        <version.lombok>1.18.8</version.lombok>
+
+        <version.maven-antrun-plugin>1.8</version.maven-antrun-plugin>
+        <version.maven-changes-plugin>2.12.1</version.maven-changes-plugin>
+        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
+        <version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
+        <version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
+        <version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
+        <!--<version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>-->
+        <version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
+        <version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
+        <!--<version.maven-failsafe-plugin>2.21.0</version.maven-failsafe-plugin>-->
+        <version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
+        <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
+        <!--<version.maven-install-plugin>2.5.2</version.maven-install-plugin>-->
+        <version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
+        <version.maven-jar-plugin>3.1.2</version.maven-jar-plugin>
+        <version.maven-javadoc-plugin>3.1.0</version.maven-javadoc-plugin>
+        <version.maven-jxr-plugin>3.0.0</version.maven-jxr-plugin>
+        <!-- maven-pmd-plugin:3.6   depends on net.sourceforge.pmd:pmd:5.3.5 -->
+        <!-- maven-pmd-plugin:3.7   depends on net.sourceforge.pmd:pmd:5.5.1 -->
+        <!-- maven-pmd-plugin:3.9.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
+        <!-- maven-pmd-plugin:3.10.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
+        <!-- maven-pmd-plugin:3.11.0 depends on net.sourceforge.pmd:pmd:6.8.0 -->
+        <version.maven-pmd-plugin>3.11.0</version.maven-pmd-plugin>
+        <version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
+        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+        <version.maven-site-plugin>3.7.1</version.maven-site-plugin>
+        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+        <!--<version.maven-surefire-plugin>2.21.0</version.maven-surefire-plugin>-->
+        <version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
+        <version.maven-surefire-report-plugin>3.0.0-M3</version.maven-surefire-report-plugin>
+        <version.maven-toolchains-plugin>1.1</version.maven-toolchains-plugin>
+
+        <version.nexus-staging-maven-plugin>1.6.8</version.nexus-staging-maven-plugin>
+
+        <version.org.codehaus.plexus_plexus-compiler-javac-errorprone>2.8.5</version.org.codehaus.plexus_plexus-compiler-javac-errorprone>
+        <version.org.jacoco_jacoco>0.8.3</version.org.jacoco_jacoco>
+        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.3.0.13828</version.org.sonarsource.java_sonar-jacoco-listeners>-->
+        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.9.1.16423</version.org.sonarsource.java_sonar-jacoco-listeners>-->
+        <version.org.sonarsource.java_sonar-jacoco-listeners>5.11.0.17289</version.org.sonarsource.java_sonar-jacoco-listeners>
+
+        <version.pegdown>1.6.0</version.pegdown>
+        <version.properties-maven-plugin>1.0.0</version.properties-maven-plugin>
+        <version.qualinsight-mojo-cobertura-core>2.0.0</version.qualinsight-mojo-cobertura-core>
+
+        <version.scala-maven-plugin>4.0.1</version.scala-maven-plugin>
+
+        <!--<version.sonar-maven-plugin>3.4.1.1168</version.sonar-maven-plugin>-->
+        <!--<version.sonar-maven-plugin>3.5.0.1254</version.sonar-maven-plugin>-->
+        <version.sonar-maven-plugin>3.6.0.1398</version.sonar-maven-plugin>
+
+        <version.taglist-maven-plugin>2.4</version.taglist-maven-plugin>
+        <version.umlgraph>5.6.6</version.umlgraph>
+        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
+
+        <version.io.fabric8_docker-maven-plugin>0.28.0</version.io.fabric8_docker-maven-plugin>
+        <version.com.spotify_docker-maven-plugin>1.2.0</version.com.spotify_docker-maven-plugin>
+        <version.com.spotify_dockerfile-maven-plugin>1.4.10</version.com.spotify_dockerfile-maven-plugin>
+
+        <!-- Why org.codehaus.mojo:wagon-maven-plugin:wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6?
+            see: https://www.mail-archive.com/users@maven.apache.org/msg129243.html -->
+        <!--http://www.mojohaus.org/wagon-maven-plugin/usage.html-->
+        <!--http://www.mojohaus.org/wagon-maven-plugin/-->
+        <version.wagon-maven-plugin>wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6</version.wagon-maven-plugin>
+        <version.wagon-ssh>3.0.0</version.wagon-ssh>
+        <version.wagon-webdav-jackrabbit>3.0.0</version.wagon-webdav-jackrabbit>
+        <!--<version.wrapper-maven-plugin>0.0.4</version.wrapper-maven-plugin>-->
+
+        <custom.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</custom.checkstyle.config.location>
+        <custom.docker.registry.url>https://docker.io/v2/</custom.docker.registry.url>
+        <custom.frontend.nodeDownloadRoot>https://nodejs.org/dist/</custom.frontend.nodeDownloadRoot>
+        <custom.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</custom.frontend.npmDownloadRoot>
+        <!--<custom.nexus2>https://oss.sonatype.org/</custom.nexus2>-->
+        <custom.nexus3>https://nexus3.infra.top/nexus/</custom.nexus3>
+        <custom.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</custom.pmd.ruleset.location>
+        <custom.sonar.host.url>https://sonarcloud.io</custom.sonar.host.url>
+        <custom.repository.url>${custom.nexus3}repository/maven-releases/</custom.repository.url>
+        <custom.snapshotRepository.url>${custom.nexus3}repository/maven-snapshots/</custom.snapshotRepository.url>
+        <custom.mvnsite.url>dav:${custom.nexus3}repository/mvnsite/${site.path}/</custom.mvnsite.url>
+        <custom.repository.releases.url>${custom.nexus3}repository/maven-releases/</custom.repository.releases.url>
+        <custom.repository.snapshots.url>${custom.nexus3}repository/maven-snapshots/</custom.repository.snapshots.url>
+        <custom.repository.third-party.url>${custom.nexus3}repository/maven-thirdparty/</custom.repository.third-party.url>
+
+        <ossrh.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</ossrh.checkstyle.config.location>
+        <ossrh.docker.registry.url>https://docker.io/v2/</ossrh.docker.registry.url>
+        <ossrh.frontend.nodeDownloadRoot>https://nodejs.org/dist/</ossrh.frontend.nodeDownloadRoot>
+        <ossrh.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</ossrh.frontend.npmDownloadRoot>
+        <ossrh.nexus2>https://oss.sonatype.org/</ossrh.nexus2>
+        <ossrh.nexus3>https://nexus3.infra.top/nexus/</ossrh.nexus3>
+        <ossrh.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</ossrh.pmd.ruleset.location>
+        <ossrh.sonar.host.url>https://sonarcloud.io</ossrh.sonar.host.url>
+        <ossrh.repository.url>${ossrh.nexus2}service/local/staging/deploy/maven2/</ossrh.repository.url>
+        <ossrh.snapshotRepository.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.snapshotRepository.url>
+        <ossrh.mvnsite.url>dav:${ossrh.nexus3}repository/mvnsite/${site.path}/</ossrh.mvnsite.url>
+        <ossrh.repository.releases.url>${ossrh.nexus2}content/repositories/releases/</ossrh.repository.releases.url>
+        <ossrh.repository.snapshots.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.repository.snapshots.url>
+        <!--<ossrh.repository.third-party.url></ossrh.repository.third-party.url>-->
+
+        <local.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</local.checkstyle.config.location>
+        <local.docker.registry.url>http://nexus3:5000/v2/</local.docker.registry.url>
+        <local.frontend.nodeDownloadRoot>https://nodejs.org/dist/</local.frontend.nodeDownloadRoot>
+        <local.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</local.frontend.npmDownloadRoot>
+        <!--<local.nexus2>http://nexus2:28081/nexus/</local.nexus2>-->
+        <local.nexus3>http://nexus3:38081/nexus/</local.nexus3>
+        <local.sonar.host.url>http://sonarqube:9000</local.sonar.host.url>
+        <local.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</local.pmd.ruleset.location>
+        <local.repository.url>${local.nexus3}repository/maven-releases/</local.repository.url>
+        <local.snapshotRepository.url>${local.nexus3}repository/maven-snapshots/</local.snapshotRepository.url>
+        <local.mvnsite.url>dav:${local.nexus3}repository/mvnsite/${site.path}/</local.mvnsite.url>
+        <local.repository.releases.url>${local.nexus3}repository/maven-releases/</local.repository.releases.url>
+        <local.repository.snapshots.url>${local.nexus3}repository/maven-snapshots/</local.repository.snapshots.url>
+        <local.repository.third-party.url>${local.nexus3}repository/maven-thirdparty/</local.repository.third-party.url>
     </properties>
 
     <repositories>
@@ -256,547 +790,6 @@
         </pluginRepository>
         <!-- @formatter:on -->
     </pluginRepositories>  
-    
-    
-    <properties>
-        <!-- Suppress 'Can not resolve symbol' errors in pom editor of IntelliJ IDEA -->
-        <!-- maven and plugin properties -->
-        <argLine></argLine>
-
-        <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
-        <checkstyle.failOnViolation>false</checkstyle.failOnViolation>
-        <checkstyle.failsOnError>false</checkstyle.failsOnError>
-        <checkstyle.logViolationsToConsole>true</checkstyle.logViolationsToConsole>
-        <checkstyle.maxAllowedViolations>10</checkstyle.maxAllowedViolations>
-        <!-- Violations to ignore. This is a comma-separated list, each value being either a rule name, a rule category or a java package name of rule class. -->
-        <!-- see: https://issues.apache.org/jira/browse/MCHECKSTYLE-347?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&focusedCommentId=16314555#comment-16314555 -->
-        <checkstyle.violation.ignore>foo,bar</checkstyle.violation.ignore>
-        <!-- Valid values are "error", "warning" and "info" -->
-        <checkstyle.violationSeverity>warning</checkstyle.violationSeverity>
-
-        <dockerfile.skip>false</dockerfile.skip>
-        <docker.image.prefix></docker.image.prefix>
-
-        <downloadSources>true</downloadSources>
-
-        <!-- findbugs.effort: Min, Default, Max -->
-        <!--<findbugs.effort>Default</findbugs.effort>-->
-        <!--<findbugs.failOnError>false</findbugs.failOnError>-->
-        <!--<findbugs.fork>true</findbugs.fork>-->
-        <!--<findbugs.includeTests>false</findbugs.includeTests>-->
-        <!--<findbugs.jvmArgs>-Xmx1024m -Xms128m -XX:MaxMetaspaceSize=512m</findbugs.jvmArgs>-->
-        <!--<findbugs.relaxed>false</findbugs.relaxed>-->
-        <!-- findbugs.threshold: High, Default, Low, Ignore, If set to "High", only high confidence bugs are reported -->
-        <!--<findbugs.threshold>Default</findbugs.threshold>-->
-
-        <linkXRef>true</linkXRef>
-        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
-        <maven.javadoc.failsOnError>false</maven.javadoc.failsOnError>
-        <maven.javadoc.skip>false</maven.javadoc.skip>
-        <maven.source.skip>false</maven.source.skip>
-        <maven.test.skip>false</maven.test.skip>
-
-        <mvnExecutable>mvn</mvnExecutable>
-
-        <pmd.failOnViolation>false</pmd.failOnViolation>
-        <!-- Minimum Priority = 5 Maximum Priority = 0 Default value is: 5. -->
-        <pmd.failurePriority>4</pmd.failurePriority>
-        <pmd.maxAllowedViolations>10</pmd.maxAllowedViolations>
-        <pmd.printFailingErrors>true</pmd.printFailingErrors>
-        <pmd.verbose>false</pmd.verbose>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <skipITs>false</skipITs>
-
-        <!--
-        publish, preview, issue .
-        sonar.analysis.mode Deprecated since SQ 6.6
-        This parameter is set to preview as part of non-Developer Edition PR decoration.
-        https://github.com/SonarQubeCommunity/sonar-build-breaker
-        This build breaker is only available in preview modes (sonar.analysis.mode=preview or sonar.analysis.mode=issues).
-        In publish mode, issue severity data is not available to post-job checkers.
-        -->
-        <sonar.analysis.mode>publish</sonar.analysis.mode>
-        <!-- Disabled, INFO, MINOR, MAJOR, CRITICAL, BLOCKER -->
-        <sonar.buildbreaker.preview.issuesSeverity>MAJOR</sonar.buildbreaker.preview.issuesSeverity>
-        <sonar.buildbreaker.queryInterval>10000</sonar.buildbreaker.queryInterval>
-        <sonar.buildbreaker.queryMaxAttempts>30</sonar.buildbreaker.queryMaxAttempts>
-        <sonar.buildbreaker.skip>true</sonar.buildbreaker.skip>
-        <sonar.exclusions>**/git.properties</sonar.exclusions>
-
-        <surefire.fork.count>1</surefire.fork.count>
-        <surefire.fork.reuse>false</surefire.fork.reuse>
-
-
-        <!-- maven-build properties -->
-        <checkstyle.config.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/checkstyle/google_checks_8.10.xml</checkstyle.config.location>
-        <!-- https://npm.taobao.org/mirrors/node/ -->
-        <frontend.nodeDownloadRoot>https://nodejs.org/dist/</frontend.nodeDownloadRoot>
-        <!-- http://registry.npm.taobao.org/npm/-/ -->
-        <frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</frontend.npmDownloadRoot>
-        <git.commit.id.skip>false</git.commit.id.skip>
-        <github.global.oauth2Token>${git.auth.token}</github.global.oauth2Token>
-        <github.global.repositoryName>unknown</github.global.repositoryName>
-        <github.global.repositoryOwner>unknown</github.global.repositoryOwner>
-        <github.site.path></github.site.path>
-        <pmd.ruleset.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/pmd/pmd-ruleset-6.8.0.xml</pmd.ruleset.location>
-        <site.path>${project.groupId}</site.path>
-
-
-        <!-- custom properties -->
-        <jacoco.reportPath>${project.build.directory}/jacoco.exec</jacoco.reportPath>
-        <jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</jacoco.itReportPath>
-
-        <!-- mvn install -Dprofile="profile name" -DprofileFormat=JSON,HTML -->
-        <maven-profiler-report-directory>${maven.multiModuleProjectDirectory}/.mvn/profiler-report</maven-profiler-report-directory>
-
-        <!--<relative.parent.dir>.</relative.parent.dir>-->
-        <src.generated.dir>**/generated/**</src.generated.dir>
-
-
-        <!-- versions -->
-        <groovy.version>2.5.6</groovy.version>
-        <kotlin.version>1.3.21</kotlin.version>
-        <scala.version>2.12.8</scala.version>
-
-
-        <version.asm>6.2</version.asm>
-        <version.javassist>3.23.1-GA</version.javassist>
-
-        <version.animal-sniffer-maven-plugin>1.16</version.animal-sniffer-maven-plugin>
-        <version.ant-contrib>20020829</version.ant-contrib>
-        <version.apt-maven-plugin>1.1.3</version.apt-maven-plugin>
-        <version.asciidoctor-maven-plugin>1.5.7.1</version.asciidoctor-maven-plugin>
-        <version.build-helper-maven-plugin>3.0.0</version.build-helper-maven-plugin>
-
-        <!--<version.checkstyle>6.19</version.checkstyle>-->
-        <version.checkstyle>8.14</version.checkstyle>
-        <version.clirr-maven-plugin>2.8</version.clirr-maven-plugin>
-        <!--<version.cobertura-maven-plugin>2.7</version.cobertura-maven-plugin>-->
-        <version.com.google.errorprone_error_prone_core>2.3.1</version.com.google.errorprone_error_prone_core>
-
-        <version.dependency-check-maven>5.0.0-M2</version.dependency-check-maven>
-        <!-- Fix error of multiple processes connect to same h2 in embedded mode, use mixed mode replace (AUTO_SERVER=TRUE). -->
-        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;</dependency-check-maven.connectionString>-->
-        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;MV_STORE=FALSE;</dependency-check-maven.connectionString>-->
-
-        <version.doxia-module-markdown>1.8</version.doxia-module-markdown>
-
-        <version.echo-maven-plugin>0.3.0</version.echo-maven-plugin>
-
-        <!-- Findbugs is no longer maintained, please use Spotbugs -->
-        <version.findbugs-annotations>3.0.1u2</version.findbugs-annotations>
-        <version.findbugs-jsr305>3.0.2</version.findbugs-jsr305>
-        <!--<version.findbugs-maven-plugin>3.0.5</version.findbugs-maven-plugin>-->
-
-        <version.spotbugs>3.1.12</version.spotbugs>
-        <version.spotbugs-maven-plugin>3.1.11</version.spotbugs-maven-plugin>
-
-        <version.frontend-maven-plugin>1.7.5</version.frontend-maven-plugin>
-
-        <version.gitflow-maven-plugin>1.11.0</version.gitflow-maven-plugin>
-
-        <!--<version.gmaven-plugin>1.0</version.gmaven-plugin>-->
-
-        <version.groovy-maven-plugin>2.1</version.groovy-maven-plugin>
-        <!-- see: http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html -->
-        <!--<version.groovy-eclipse-compiler>2.9.3-01</version.groovy-eclipse-compiler>-->
-        <!--<version.groovy-eclipse-batch>2.4.15-01</version.groovy-eclipse-batch>-->
-        <version.groovy-eclipse-compiler>3.3.0-01</version.groovy-eclipse-compiler>
-        <version.groovy-eclipse-batch>2.5.6-01</version.groovy-eclipse-batch>
-
-        <version.javax.activation>1.1.1</version.javax.activation>
-        <version.java18>1.0</version.java18>
-        <version.jdepend-maven-plugin>2.0</version.jdepend-maven-plugin>
-        <version.jetbrains-annotations>16.0.3</version.jetbrains-annotations>
-        <version.jsch>0.1.54</version.jsch>
-        <version.lombok>1.18.8</version.lombok>
-
-        <version.maven-antrun-plugin>1.8</version.maven-antrun-plugin>
-        <version.maven-changes-plugin>2.12.1</version.maven-changes-plugin>
-        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
-        <version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
-        <version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
-        <version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
-        <!--<version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>-->
-        <version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
-        <version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
-        <!--<version.maven-failsafe-plugin>2.21.0</version.maven-failsafe-plugin>-->
-        <version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
-        <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
-        <!--<version.maven-install-plugin>2.5.2</version.maven-install-plugin>-->
-        <version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
-        <version.maven-jar-plugin>3.1.2</version.maven-jar-plugin>
-        <version.maven-javadoc-plugin>3.1.0</version.maven-javadoc-plugin>
-        <version.maven-jxr-plugin>3.0.0</version.maven-jxr-plugin>
-        <!-- maven-pmd-plugin:3.6   depends on net.sourceforge.pmd:pmd:5.3.5 -->
-        <!-- maven-pmd-plugin:3.7   depends on net.sourceforge.pmd:pmd:5.5.1 -->
-        <!-- maven-pmd-plugin:3.9.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
-        <!-- maven-pmd-plugin:3.10.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
-        <!-- maven-pmd-plugin:3.11.0 depends on net.sourceforge.pmd:pmd:6.8.0 -->
-        <version.maven-pmd-plugin>3.11.0</version.maven-pmd-plugin>
-        <version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
-        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
-        <version.maven-site-plugin>3.7.1</version.maven-site-plugin>
-        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
-        <!--<version.maven-surefire-plugin>2.21.0</version.maven-surefire-plugin>-->
-        <version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
-        <version.maven-surefire-report-plugin>3.0.0-M3</version.maven-surefire-report-plugin>
-        <version.maven-toolchains-plugin>1.1</version.maven-toolchains-plugin>
-
-        <version.nexus-staging-maven-plugin>1.6.8</version.nexus-staging-maven-plugin>
-
-        <version.org.codehaus.plexus_plexus-compiler-javac-errorprone>2.8.5</version.org.codehaus.plexus_plexus-compiler-javac-errorprone>
-        <version.org.jacoco_jacoco>0.8.3</version.org.jacoco_jacoco>
-        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.3.0.13828</version.org.sonarsource.java_sonar-jacoco-listeners>-->
-        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.9.1.16423</version.org.sonarsource.java_sonar-jacoco-listeners>-->
-        <version.org.sonarsource.java_sonar-jacoco-listeners>5.11.0.17289</version.org.sonarsource.java_sonar-jacoco-listeners>
-
-        <version.pegdown>1.6.0</version.pegdown>
-        <version.properties-maven-plugin>1.0.0</version.properties-maven-plugin>
-        <version.qualinsight-mojo-cobertura-core>2.0.0</version.qualinsight-mojo-cobertura-core>
-
-        <version.scala-maven-plugin>4.0.1</version.scala-maven-plugin>
-
-        <!--<version.sonar-maven-plugin>3.4.1.1168</version.sonar-maven-plugin>-->
-        <!--<version.sonar-maven-plugin>3.5.0.1254</version.sonar-maven-plugin>-->
-        <version.sonar-maven-plugin>3.6.0.1398</version.sonar-maven-plugin>
-
-        <version.taglist-maven-plugin>2.4</version.taglist-maven-plugin>
-        <version.umlgraph>5.6.6</version.umlgraph>
-        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
-
-        <version.io.fabric8_docker-maven-plugin>0.28.0</version.io.fabric8_docker-maven-plugin>
-        <version.com.spotify_docker-maven-plugin>1.2.0</version.com.spotify_docker-maven-plugin>
-        <version.com.spotify_dockerfile-maven-plugin>1.4.10</version.com.spotify_dockerfile-maven-plugin>
-
-        <!-- Why org.codehaus.mojo:wagon-maven-plugin:wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6?
-            see: https://www.mail-archive.com/users@maven.apache.org/msg129243.html -->
-        <!--http://www.mojohaus.org/wagon-maven-plugin/usage.html-->
-        <!--http://www.mojohaus.org/wagon-maven-plugin/-->
-        <version.wagon-maven-plugin>wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6</version.wagon-maven-plugin>
-        <version.wagon-ssh>3.0.0</version.wagon-ssh>
-        <version.wagon-webdav-jackrabbit>3.0.0</version.wagon-webdav-jackrabbit>
-        <!--<version.wrapper-maven-plugin>0.0.4</version.wrapper-maven-plugin>-->
-
-        <custom.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</custom.checkstyle.config.location>
-        <custom.docker.registry.url>https://docker.io/v2/</custom.docker.registry.url>
-        <custom.frontend.nodeDownloadRoot>https://nodejs.org/dist/</custom.frontend.nodeDownloadRoot>
-        <custom.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</custom.frontend.npmDownloadRoot>
-        <!--<custom.nexus2>https://oss.sonatype.org/</custom.nexus2>-->
-        <custom.nexus3>https://nexus3.infra.top/nexus/</custom.nexus3>
-        <custom.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</custom.pmd.ruleset.location>
-        <custom.sonar.host.url>https://sonarcloud.io</custom.sonar.host.url>
-        <custom.repository.url>${custom.nexus3}repository/maven-releases/</custom.repository.url>
-        <custom.snapshotRepository.url>${custom.nexus3}repository/maven-snapshots/</custom.snapshotRepository.url>
-        <custom.mvnsite.url>dav:${custom.nexus3}repository/mvnsite/${site.path}/</custom.mvnsite.url>
-        <custom.repository.releases.url>${custom.nexus3}repository/maven-releases/</custom.repository.releases.url>
-        <custom.repository.snapshots.url>${custom.nexus3}repository/maven-snapshots/</custom.repository.snapshots.url>
-        <custom.repository.third-party.url>${custom.nexus3}repository/maven-thirdparty/</custom.repository.third-party.url>
-
-        <ossrh.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</ossrh.checkstyle.config.location>
-        <ossrh.docker.registry.url>https://docker.io/v2/</ossrh.docker.registry.url>
-        <ossrh.frontend.nodeDownloadRoot>https://nodejs.org/dist/</ossrh.frontend.nodeDownloadRoot>
-        <ossrh.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</ossrh.frontend.npmDownloadRoot>
-        <ossrh.nexus2>https://oss.sonatype.org/</ossrh.nexus2>
-        <ossrh.nexus3>https://nexus3.infra.top/nexus/</ossrh.nexus3>
-        <ossrh.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</ossrh.pmd.ruleset.location>
-        <ossrh.sonar.host.url>https://sonarcloud.io</ossrh.sonar.host.url>
-        <ossrh.repository.url>${ossrh.nexus2}service/local/staging/deploy/maven2/</ossrh.repository.url>
-        <ossrh.snapshotRepository.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.snapshotRepository.url>
-        <ossrh.mvnsite.url>dav:${ossrh.nexus3}repository/mvnsite/${site.path}/</ossrh.mvnsite.url>
-        <ossrh.repository.releases.url>${ossrh.nexus2}content/repositories/releases/</ossrh.repository.releases.url>
-        <ossrh.repository.snapshots.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.repository.snapshots.url>
-        <!--<ossrh.repository.third-party.url></ossrh.repository.third-party.url>-->
-
-        <local.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</local.checkstyle.config.location>
-        <local.docker.registry.url>http://nexus3:5000/v2/</local.docker.registry.url>
-        <local.frontend.nodeDownloadRoot>https://nodejs.org/dist/</local.frontend.nodeDownloadRoot>
-        <local.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</local.frontend.npmDownloadRoot>
-        <!--<local.nexus2>http://nexus2:28081/nexus/</local.nexus2>-->
-        <local.nexus3>http://nexus3:38081/nexus/</local.nexus3>
-        <local.sonar.host.url>http://sonarqube:9000</local.sonar.host.url>
-        <local.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</local.pmd.ruleset.location>
-        <local.repository.url>${local.nexus3}repository/maven-releases/</local.repository.url>
-        <local.snapshotRepository.url>${local.nexus3}repository/maven-snapshots/</local.snapshotRepository.url>
-        <local.mvnsite.url>dav:${local.nexus3}repository/mvnsite/${site.path}/</local.mvnsite.url>
-        <local.repository.releases.url>${local.nexus3}repository/maven-releases/</local.repository.releases.url>
-        <local.repository.snapshots.url>${local.nexus3}repository/maven-snapshots/</local.repository.snapshots.url>
-        <local.repository.third-party.url>${local.nexus3}repository/maven-thirdparty/</local.repository.third-party.url>
-    </properties>
-
-    <properties>
-        <!-- Suppress 'Can not resolve symbol' errors in pom editor of IntelliJ IDEA -->
-        <!-- maven and plugin properties -->
-        <argLine></argLine>
-
-        <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
-        <checkstyle.failOnViolation>false</checkstyle.failOnViolation>
-        <checkstyle.failsOnError>false</checkstyle.failsOnError>
-        <checkstyle.logViolationsToConsole>true</checkstyle.logViolationsToConsole>
-        <checkstyle.maxAllowedViolations>10</checkstyle.maxAllowedViolations>
-        <!-- Violations to ignore. This is a comma-separated list, each value being either a rule name, a rule category or a java package name of rule class. -->
-        <!-- see: https://issues.apache.org/jira/browse/MCHECKSTYLE-347?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&focusedCommentId=16314555#comment-16314555 -->
-        <checkstyle.violation.ignore>foo,bar</checkstyle.violation.ignore>
-        <!-- Valid values are "error", "warning" and "info" -->
-        <checkstyle.violationSeverity>warning</checkstyle.violationSeverity>
-
-        <dockerfile.skip>false</dockerfile.skip>
-        <docker.image.prefix></docker.image.prefix>
-
-        <downloadSources>true</downloadSources>
-
-        <!-- findbugs.effort: Min, Default, Max -->
-        <!--<findbugs.effort>Default</findbugs.effort>-->
-        <!--<findbugs.failOnError>false</findbugs.failOnError>-->
-        <!--<findbugs.fork>true</findbugs.fork>-->
-        <!--<findbugs.includeTests>false</findbugs.includeTests>-->
-        <!--<findbugs.jvmArgs>-Xmx1024m -Xms128m -XX:MaxMetaspaceSize=512m</findbugs.jvmArgs>-->
-        <!--<findbugs.relaxed>false</findbugs.relaxed>-->
-        <!-- findbugs.threshold: High, Default, Low, Ignore, If set to "High", only high confidence bugs are reported -->
-        <!--<findbugs.threshold>Default</findbugs.threshold>-->
-
-        <linkXRef>true</linkXRef>
-        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
-        <maven.javadoc.failsOnError>false</maven.javadoc.failsOnError>
-        <maven.javadoc.skip>false</maven.javadoc.skip>
-        <maven.source.skip>false</maven.source.skip>
-        <maven.test.skip>false</maven.test.skip>
-
-        <mvnExecutable>mvn</mvnExecutable>
-
-        <pmd.failOnViolation>false</pmd.failOnViolation>
-        <!-- Minimum Priority = 5 Maximum Priority = 0 Default value is: 5. -->
-        <pmd.failurePriority>4</pmd.failurePriority>
-        <pmd.maxAllowedViolations>10</pmd.maxAllowedViolations>
-        <pmd.printFailingErrors>true</pmd.printFailingErrors>
-        <pmd.verbose>false</pmd.verbose>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <skipITs>false</skipITs>
-
-        <!--
-        publish, preview, issue .
-        sonar.analysis.mode Deprecated since SQ 6.6
-        This parameter is set to preview as part of non-Developer Edition PR decoration.
-        https://github.com/SonarQubeCommunity/sonar-build-breaker
-        This build breaker is only available in preview modes (sonar.analysis.mode=preview or sonar.analysis.mode=issues).
-        In publish mode, issue severity data is not available to post-job checkers.
-        -->
-        <sonar.analysis.mode>publish</sonar.analysis.mode>
-        <!-- Disabled, INFO, MINOR, MAJOR, CRITICAL, BLOCKER -->
-        <sonar.buildbreaker.preview.issuesSeverity>MAJOR</sonar.buildbreaker.preview.issuesSeverity>
-        <sonar.buildbreaker.queryInterval>10000</sonar.buildbreaker.queryInterval>
-        <sonar.buildbreaker.queryMaxAttempts>30</sonar.buildbreaker.queryMaxAttempts>
-        <sonar.buildbreaker.skip>true</sonar.buildbreaker.skip>
-        <sonar.exclusions>**/git.properties</sonar.exclusions>
-
-        <surefire.fork.count>1</surefire.fork.count>
-        <surefire.fork.reuse>false</surefire.fork.reuse>
-
-
-        <!-- maven-build properties -->
-        <checkstyle.config.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/checkstyle/google_checks_8.10.xml</checkstyle.config.location>
-        <!-- https://npm.taobao.org/mirrors/node/ -->
-        <frontend.nodeDownloadRoot>https://nodejs.org/dist/</frontend.nodeDownloadRoot>
-        <!-- http://registry.npm.taobao.org/npm/-/ -->
-        <frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</frontend.npmDownloadRoot>
-        <git.commit.id.skip>false</git.commit.id.skip>
-        <github.global.oauth2Token>${git.auth.token}</github.global.oauth2Token>
-        <github.global.repositoryName>unknown</github.global.repositoryName>
-        <github.global.repositoryOwner>unknown</github.global.repositoryOwner>
-        <github.site.path></github.site.path>
-        <pmd.ruleset.location>https://raw.githubusercontent.com/ci-and-cd/maven-build/master/src/main/pmd/pmd-ruleset-6.8.0.xml</pmd.ruleset.location>
-        <site.path>${project.groupId}</site.path>
-
-
-        <!-- custom properties -->
-        <jacoco.reportPath>${project.build.directory}/jacoco.exec</jacoco.reportPath>
-        <jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</jacoco.itReportPath>
-
-        <!-- mvn install -Dprofile="profile name" -DprofileFormat=JSON,HTML -->
-        <maven-profiler-report-directory>${maven.multiModuleProjectDirectory}/.mvn/profiler-report</maven-profiler-report-directory>
-
-        <!--<relative.parent.dir>.</relative.parent.dir>-->
-        <src.generated.dir>**/generated/**</src.generated.dir>
-
-
-        <!-- versions -->
-        <groovy.version>2.5.6</groovy.version>
-        <kotlin.version>1.3.21</kotlin.version>
-        <scala.version>2.12.8</scala.version>
-
-
-        <version.asm>6.2</version.asm>
-        <version.javassist>3.23.1-GA</version.javassist>
-
-        <version.animal-sniffer-maven-plugin>1.16</version.animal-sniffer-maven-plugin>
-        <version.ant-contrib>20020829</version.ant-contrib>
-        <version.apt-maven-plugin>1.1.3</version.apt-maven-plugin>
-        <version.asciidoctor-maven-plugin>1.5.7.1</version.asciidoctor-maven-plugin>
-        <version.build-helper-maven-plugin>3.0.0</version.build-helper-maven-plugin>
-
-        <!--<version.checkstyle>6.19</version.checkstyle>-->
-        <version.checkstyle>8.14</version.checkstyle>
-        <version.clirr-maven-plugin>2.8</version.clirr-maven-plugin>
-        <!--<version.cobertura-maven-plugin>2.7</version.cobertura-maven-plugin>-->
-        <version.com.google.errorprone_error_prone_core>2.3.1</version.com.google.errorprone_error_prone_core>
-
-        <version.dependency-check-maven>5.0.0-M2</version.dependency-check-maven>
-        <!-- Fix error of multiple processes connect to same h2 in embedded mode, use mixed mode replace (AUTO_SERVER=TRUE). -->
-        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;</dependency-check-maven.connectionString>-->
-        <!--<dependency-check-maven.connectionString>jdbc:h2:file:%s;AUTOCOMMIT=ON;LOG=0;CACHE_SIZE=65536;AUTO_SERVER=TRUE;MV_STORE=FALSE;</dependency-check-maven.connectionString>-->
-
-        <version.doxia-module-markdown>1.8</version.doxia-module-markdown>
-
-        <version.echo-maven-plugin>0.3.0</version.echo-maven-plugin>
-
-        <!-- Findbugs is no longer maintained, please use Spotbugs -->
-        <version.findbugs-annotations>3.0.1u2</version.findbugs-annotations>
-        <version.findbugs-jsr305>3.0.2</version.findbugs-jsr305>
-        <!--<version.findbugs-maven-plugin>3.0.5</version.findbugs-maven-plugin>-->
-
-        <version.spotbugs>3.1.12</version.spotbugs>
-        <version.spotbugs-maven-plugin>3.1.11</version.spotbugs-maven-plugin>
-
-        <version.frontend-maven-plugin>1.7.5</version.frontend-maven-plugin>
-
-        <version.gitflow-maven-plugin>1.11.0</version.gitflow-maven-plugin>
-
-        <!--<version.gmaven-plugin>1.0</version.gmaven-plugin>-->
-
-        <version.groovy-maven-plugin>2.1</version.groovy-maven-plugin>
-        <!-- see: http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html -->
-        <!--<version.groovy-eclipse-compiler>2.9.3-01</version.groovy-eclipse-compiler>-->
-        <!--<version.groovy-eclipse-batch>2.4.15-01</version.groovy-eclipse-batch>-->
-        <version.groovy-eclipse-compiler>3.3.0-01</version.groovy-eclipse-compiler>
-        <version.groovy-eclipse-batch>2.5.6-01</version.groovy-eclipse-batch>
-
-        <version.javax.activation>1.1.1</version.javax.activation>
-        <version.java18>1.0</version.java18>
-        <version.jdepend-maven-plugin>2.0</version.jdepend-maven-plugin>
-        <version.jetbrains-annotations>16.0.3</version.jetbrains-annotations>
-        <version.jsch>0.1.54</version.jsch>
-        <version.lombok>1.18.8</version.lombok>
-
-        <version.maven-antrun-plugin>1.8</version.maven-antrun-plugin>
-        <version.maven-changes-plugin>2.12.1</version.maven-changes-plugin>
-        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
-        <version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
-        <version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
-        <version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
-        <!--<version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>-->
-        <version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
-        <version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
-        <!--<version.maven-failsafe-plugin>2.21.0</version.maven-failsafe-plugin>-->
-        <version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
-        <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
-        <!--<version.maven-install-plugin>2.5.2</version.maven-install-plugin>-->
-        <version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
-        <version.maven-jar-plugin>3.1.2</version.maven-jar-plugin>
-        <version.maven-javadoc-plugin>3.1.0</version.maven-javadoc-plugin>
-        <version.maven-jxr-plugin>3.0.0</version.maven-jxr-plugin>
-        <!-- maven-pmd-plugin:3.6   depends on net.sourceforge.pmd:pmd:5.3.5 -->
-        <!-- maven-pmd-plugin:3.7   depends on net.sourceforge.pmd:pmd:5.5.1 -->
-        <!-- maven-pmd-plugin:3.9.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
-        <!-- maven-pmd-plugin:3.10.0 depends on net.sourceforge.pmd:pmd:6.4.0 -->
-        <!-- maven-pmd-plugin:3.11.0 depends on net.sourceforge.pmd:pmd:6.8.0 -->
-        <version.maven-pmd-plugin>3.11.0</version.maven-pmd-plugin>
-        <version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
-        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
-        <version.maven-site-plugin>3.7.1</version.maven-site-plugin>
-        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
-        <!--<version.maven-surefire-plugin>2.21.0</version.maven-surefire-plugin>-->
-        <version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
-        <version.maven-surefire-report-plugin>3.0.0-M3</version.maven-surefire-report-plugin>
-        <version.maven-toolchains-plugin>1.1</version.maven-toolchains-plugin>
-
-        <version.nexus-staging-maven-plugin>1.6.8</version.nexus-staging-maven-plugin>
-
-        <version.org.codehaus.plexus_plexus-compiler-javac-errorprone>2.8.5</version.org.codehaus.plexus_plexus-compiler-javac-errorprone>
-        <version.org.jacoco_jacoco>0.8.3</version.org.jacoco_jacoco>
-        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.3.0.13828</version.org.sonarsource.java_sonar-jacoco-listeners>-->
-        <!--<version.org.sonarsource.java_sonar-jacoco-listeners>5.9.1.16423</version.org.sonarsource.java_sonar-jacoco-listeners>-->
-        <version.org.sonarsource.java_sonar-jacoco-listeners>5.11.0.17289</version.org.sonarsource.java_sonar-jacoco-listeners>
-
-        <version.pegdown>1.6.0</version.pegdown>
-        <version.properties-maven-plugin>1.0.0</version.properties-maven-plugin>
-        <version.qualinsight-mojo-cobertura-core>2.0.0</version.qualinsight-mojo-cobertura-core>
-
-        <version.scala-maven-plugin>4.0.1</version.scala-maven-plugin>
-
-        <!--<version.sonar-maven-plugin>3.4.1.1168</version.sonar-maven-plugin>-->
-        <!--<version.sonar-maven-plugin>3.5.0.1254</version.sonar-maven-plugin>-->
-        <version.sonar-maven-plugin>3.6.0.1398</version.sonar-maven-plugin>
-
-        <version.taglist-maven-plugin>2.4</version.taglist-maven-plugin>
-        <version.umlgraph>5.6.6</version.umlgraph>
-        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
-
-        <version.io.fabric8_docker-maven-plugin>0.28.0</version.io.fabric8_docker-maven-plugin>
-        <version.com.spotify_docker-maven-plugin>1.2.0</version.com.spotify_docker-maven-plugin>
-        <version.com.spotify_dockerfile-maven-plugin>1.4.10</version.com.spotify_dockerfile-maven-plugin>
-
-        <!-- Why org.codehaus.mojo:wagon-maven-plugin:wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6?
-            see: https://www.mail-archive.com/users@maven.apache.org/msg129243.html -->
-        <!--http://www.mojohaus.org/wagon-maven-plugin/usage.html-->
-        <!--http://www.mojohaus.org/wagon-maven-plugin/-->
-        <version.wagon-maven-plugin>wagon-maven-plugin-2.0.1-snapshot-chshawkn-1.6</version.wagon-maven-plugin>
-        <version.wagon-ssh>3.0.0</version.wagon-ssh>
-        <version.wagon-webdav-jackrabbit>3.0.0</version.wagon-webdav-jackrabbit>
-        <!--<version.wrapper-maven-plugin>0.0.4</version.wrapper-maven-plugin>-->
-
-        <custom.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</custom.checkstyle.config.location>
-        <custom.docker.registry.url>https://docker.io/v2/</custom.docker.registry.url>
-        <custom.frontend.nodeDownloadRoot>https://nodejs.org/dist/</custom.frontend.nodeDownloadRoot>
-        <custom.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</custom.frontend.npmDownloadRoot>
-        <!--<custom.nexus2>https://oss.sonatype.org/</custom.nexus2>-->
-        <custom.nexus3>https://nexus3.infra.top/nexus/</custom.nexus3>
-        <custom.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</custom.pmd.ruleset.location>
-        <custom.sonar.host.url>https://sonarcloud.io</custom.sonar.host.url>
-        <custom.repository.url>${custom.nexus3}repository/maven-releases/</custom.repository.url>
-        <custom.snapshotRepository.url>${custom.nexus3}repository/maven-snapshots/</custom.snapshotRepository.url>
-        <custom.mvnsite.url>dav:${custom.nexus3}repository/mvnsite/${site.path}/</custom.mvnsite.url>
-        <custom.repository.releases.url>${custom.nexus3}repository/maven-releases/</custom.repository.releases.url>
-        <custom.repository.snapshots.url>${custom.nexus3}repository/maven-snapshots/</custom.repository.snapshots.url>
-        <custom.repository.third-party.url>${custom.nexus3}repository/maven-thirdparty/</custom.repository.third-party.url>
-
-        <ossrh.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</ossrh.checkstyle.config.location>
-        <ossrh.docker.registry.url>https://docker.io/v2/</ossrh.docker.registry.url>
-        <ossrh.frontend.nodeDownloadRoot>https://nodejs.org/dist/</ossrh.frontend.nodeDownloadRoot>
-        <ossrh.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</ossrh.frontend.npmDownloadRoot>
-        <ossrh.nexus2>https://oss.sonatype.org/</ossrh.nexus2>
-        <ossrh.nexus3>https://nexus3.infra.top/nexus/</ossrh.nexus3>
-        <ossrh.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</ossrh.pmd.ruleset.location>
-        <ossrh.sonar.host.url>https://sonarcloud.io</ossrh.sonar.host.url>
-        <ossrh.repository.url>${ossrh.nexus2}service/local/staging/deploy/maven2/</ossrh.repository.url>
-        <ossrh.snapshotRepository.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.snapshotRepository.url>
-        <ossrh.mvnsite.url>dav:${ossrh.nexus3}repository/mvnsite/${site.path}/</ossrh.mvnsite.url>
-        <ossrh.repository.releases.url>${ossrh.nexus2}content/repositories/releases/</ossrh.repository.releases.url>
-        <ossrh.repository.snapshots.url>${ossrh.nexus2}content/repositories/snapshots/</ossrh.repository.snapshots.url>
-        <!--<ossrh.repository.third-party.url></ossrh.repository.third-party.url>-->
-
-        <local.checkstyle.config.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/checkstyle/google_checks_8.10.xml</local.checkstyle.config.location>
-        <local.docker.registry.url>http://nexus3:5000/v2/</local.docker.registry.url>
-        <local.frontend.nodeDownloadRoot>https://nodejs.org/dist/</local.frontend.nodeDownloadRoot>
-        <local.frontend.npmDownloadRoot>https://registry.npmjs.org/npm/-/</local.frontend.npmDownloadRoot>
-        <!--<local.nexus2>http://nexus2:28081/nexus/</local.nexus2>-->
-        <local.nexus3>http://nexus3:38081/nexus/</local.nexus3>
-        <local.sonar.host.url>http://sonarqube:9000</local.sonar.host.url>
-        <local.pmd.ruleset.location>https://github.com/ci-and-cd/maven-build/raw/master/src/main/pmd/pmd-ruleset-6.8.0.xml</local.pmd.ruleset.location>
-        <local.repository.url>${local.nexus3}repository/maven-releases/</local.repository.url>
-        <local.snapshotRepository.url>${local.nexus3}repository/maven-snapshots/</local.snapshotRepository.url>
-        <local.mvnsite.url>dav:${local.nexus3}repository/mvnsite/${site.path}/</local.mvnsite.url>
-        <local.repository.releases.url>${local.nexus3}repository/maven-releases/</local.repository.releases.url>
-        <local.repository.snapshots.url>${local.nexus3}repository/maven-snapshots/</local.repository.snapshots.url>
-        <local.repository.third-party.url>${local.nexus3}repository/maven-thirdparty/</local.repository.third-party.url>
-    </properties>
     <build>
         <extensions>
             <!-- for the dependency type 'docker-info' to be supported -->

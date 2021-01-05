@@ -80,9 +80,7 @@
   #       run: mvn -B -e -X clean deploy -DskipTests
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           
-      - name: Build project with Maven
-        run: mvn -B package --file pom.xml
+          
 
  #      - name: Maven Package
  #        run: mvn -B clean package

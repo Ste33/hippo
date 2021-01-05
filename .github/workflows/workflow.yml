@@ -24,6 +24,7 @@
             cat /home/runner/.m2/settings.xml
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
+        
 
 
 #         settings-path: .m2/settings.xml # location for the settings.xml file

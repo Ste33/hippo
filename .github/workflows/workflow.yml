@@ -19,12 +19,12 @@
         with:
          java-version: 1.8 
          settings-path: ${{ github.workspace }} # location for the settings.xml file
-          
+         fail-fast: false 
       - name: Maven Package
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
         run: mvn -B clean verify -DskipTests 
-           
+
       - name: Build project with Maven
         run: mvn -B package --file pom.xml
       - name: Display settings.xml
@@ -34,8 +34,7 @@
         run: |
            cp .m2/settings.xml /home/runner/.m2/settings.xml
            cat /home/runner/.m2/settings.xml
-    fail-fast: false   
-           
+
           
 #     env:
 #         HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }}

@@ -19,12 +19,6 @@
         with:
          java-version: 1.8 
 #         settings-path: .m2/settings.xml # location for the settings.xml file
-
-      - name: Maven Package
-        run: mvn -B clean package -DskipTests
-      - name: Maven Verify
-        run: mvn -B clean verify -DskipTests 
-
       - name: Display settings.xml
         env:
           HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }}
@@ -32,8 +26,12 @@
         run: |
            cp .m2/settings.xml /home/runner/.m2/settings.xml
            cat /home/runner/.m2/settings.xml
-            
-      - name: Build project with Maven
+           
+      - name: Maven Package
+        run: mvn -B clean package -DskipTests
+      - name: Maven Verify
+        run: mvn -B clean verify -DskipTests        
+      - name: Maven Build
         run: mvn -B package --file pom.xml
 
           

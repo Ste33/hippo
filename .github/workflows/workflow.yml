@@ -19,6 +19,7 @@
         with:
          java-version: 1.8 
          settings-path: ${{ github.workspace }} # location for the settings.xml file
+    fail-fast: false  
          
      # - name: Display settings.xml
      #   env:

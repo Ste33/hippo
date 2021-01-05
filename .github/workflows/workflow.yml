@@ -1,4 +1,4 @@
- name: Hippo CI/CD Workflow
+ name: Hippo CI/CD
 
  on: push
 

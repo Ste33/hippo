@@ -19,8 +19,12 @@
         with:
          java-version: 1.8 
          settings-path: ${{ github.workspace }} # location for the settings.xml file
-    fail-fast: false  
-         
+      - name: Maven Package
+        run: mvn -B clean package -DskipTests
+      - name: Maven Verify
+        run: mvn -B clean verify -DskipTests 
+    fail-fast: false    
+       
      # - name: Display settings.xml
      #   env:
      #     HIPPO_MAVEN_USERNAME: ${{ secrets.HIPPO_MAVEN_USERNAME }}
@@ -42,10 +46,6 @@
 #        env:
 #           USERNAME: ${{ github.actor }}
 #           PASSWORD: ${{ secrets.GITHUB_TOKEN }}        
-      - name: Maven Package
-        run: mvn -B clean package -DskipTests
-      - name: Maven Verify
-        run: mvn -B clean verify -DskipTests
          
            
   # sonar:
